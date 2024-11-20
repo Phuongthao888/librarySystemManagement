@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMT73nHh0B3nDkEV0yPka1xE4c6sX6U0C6r6I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh; /* Đảm bảo chiều cao bằng viewport */
+        }
+
+        .sidebar {
+            width: 18%; /* Chiếm 3 phần */
+            background-color: #1f1e1e;
+            color: white;
+            padding: 20px 0; /* Thêm padding trên và dưới */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Căn giữa theo chiều ngang */
+        }
+
+            .sidebar h4 {
+                margin-bottom: 15px; /* Khoảng cách dưới tiêu đề */
+                font-size: 14px; /* Kích thước chữ lớn hơn */
+            }
+
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                padding: 10px 15px;
+                display: block;
+                width: 100%; /* Đảm bảo link rộng đầy đủ */
+                font-size: 14px; /* Kích thước chữ lớn hơn */
+                margin-left: 20px;
+            }
+
+                .sidebar a:hover {
+                    background-color: #495057;
+                }
+
+        .main-content {
+            width: 82%; /* Chiếm 7 phần */
+            padding: 20px;
+            overflow-y: auto; /* Thêm cuộn cho nội dung */
+        }
+
+        .custom-navbar {
+            border-bottom: 2px solid #ddd; /* Thay đổi màu và độ dày theo nhu cầu */
+        }
+
+        .navbar-nav {
+            list-style-type: none; /* Bỏ dấu chấm ở các mục trong danh sách */
+            padding: 0; /* Bỏ padding mặc định */
+        }
+
+            .navbar-nav li {
+                margin: 10px 0; /* Thêm khoảng cách giữa các mục */
+            }
+
+            .navbar-nav i {
+                margin-right: 8px; /* Khoảng cách giữa icon và chữ */
+            }
+
+        .custom-navbar-brand {
+            border-bottom: 2px solid #808080; /* Đường viền màu xám */
+            padding: 10px; /* Thêm padding để tạo khoảng cách giữa đường viền và nội dung */
+            border-radius: 5px; /* Làm tròn các góc của đường viền (tùy chọn) */
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #ff5733, #33c1ff, #ff33a6, #33ff57); /* Gradient màu */
+            -webkit-background-clip: text; /* Cắt nền theo văn bản */
+            -webkit-text-fill-color: transparent; /* Làm cho màu chữ trong suốt */
+            font-size: 2rem; /* Kích thước chữ (tùy chọn) */
+            display: inline-block; /* Để hiệu ứng hoạt động chính xác */
+        }
+
+        .input-group .form-control {
+            border-top-left-radius: 0; /* Xóa border-radius góc trên bên trái */
+            border-bottom-left-radius: 0; /* Xóa border-radius góc dưới bên trái */
+        }
+
+        .input-group-append .btn {
+            border-top-left-radius: 0; /* Xóa border-radius góc trên bên phải */
+            border-bottom-left-radius: 0; /* Xóa border-radius góc dưới bên phải */
+        }
+        /* Change dropdown background to black and text to white */
+        /* Dropdown menu background with a cleaner, modern color */
+        .dropdown-menu {
+            background-color: #3E3E3E; /* Darker shade for modern look */
+            border: none; /* Remove border for cleaner appearance */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            padding: 10px; /* Add padding for more spacing */
+            border-radius: 6px; /* Rounded corners for a modern touch */
+            transition: all 0.3s ease; /* Smooth transitions */
+        }
+
+        /* Dropdown items with better spacing and color contrast */
+        .dropdown-item {
+            color: white;
+            padding: 10px 20px; /* Larger padding for better readability */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+            border-radius: 4px; /* Subtle rounded corners */
+        }
+
+            /* Hover effect: darker background, keeping the white text */
+            .dropdown-item:hover {
+                background-color: #1a1a1a; /* Darker hover effect */
+                color: #f8f9fa; /* Keep text white */
+            }
+
+        /* Customizing the dropdown toggle to look better */
+        .nav-link.dropdown-toggle {
+            color: white;
+            border-radius: 4px; /* Rounded corners for toggle button */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .nav-link.dropdown-toggle:hover {
+                background-color: #0056b3; /* Darker shade of primary on hover */
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <div class="sidebar pe-4 pb-3">
+        <a href="index.jsp" class="navbar-brand mx-4 mb-3 custom-navbar-brand">
+            <h3 class="text-gradient">
+                <i class="fa fa-hashtag me-2"></i>LibraryPT
+            </h3>
+        </a>
+
+        <hr />
+
+        <div class="navbar-nav w-100">
+            @Html.ActionLink("Trang chủ", "Index", "Dashboard", new { area = "" }, new { @class = "nav-link" })<br>
+
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="inventoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Quản lý giao dịch
+                </a>
+                <div class="dropdown-menu" aria-labelledby="inventoryDropdown">
+                    @Html.ActionLink("Giao dịch cho thuê", "Index", "transactionBorrow", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Giao dịch trả sách", "Index", "transactionReturn", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Nhập kho", "Index", "importRepositories", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Xuất kho", "Index", "exportRepositories", new { area = "" }, new { @class = "dropdown-item" })
+                </div>
+            </div><br>
+
+            <div class="nav-item dropdown">
+                @Html.ActionLink("Quản lý độc giả", "Index", "Reader", new { area = "" }, new { @class = "nav-link" })<br>
+            </div>
+
+            <div class="nav-item dropdown">
+                @Html.ActionLink("Quản lý thể loại", "Index", "Category", new { area = "" }, new { @class = "nav-link" })<br>
+            </div>
+
+            <div class="nav-item dropdown">
+                @Html.ActionLink("Quản lý kệ sản phẩm", "Index", "Bookshelf", new { area = "" }, new { @class = "nav-link" })<br>
+            </div>
+
+            <div class="nav-item dropdown">
+                @Html.ActionLink("Quản lý sản phẩm", "Index", "Book", new { area = "" }, new { @class = "nav-link" })<br>
+            </div>
+
+            <div class="nav-item dropdown">
+                @Html.ActionLink("Quản lý nhà cung cấp", "Index", "Supplier", new { area = "" }, new { @class = "nav-link" })<br>
+            </div>
+
+            <div class="nav-item dropdown">
+                @Html.ActionLink("Quản lý nhân viên", "Index", "Staff", new { area = "" }, new { @class = "nav-link" })<br>
+            </div>
+
+            <div class="nav-item dropdown">
+                @Html.ActionLink("Quản lý kho", "Index", "Inventories", new { area = "" }, new { @class = "nav-link" })<br>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="main-content">
+        <nav class="navbar navbar-expand bg-gradient navbar-light custom-navbar">
+            <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                <h2 class="text-primary mb-0">
+                    <i class="fa fa-hashtag"></i>
+                </h2>
+            </a> <a href="#" class="sidebar-toggler flex-shrink-0">
+            </a>
+            @RenderSection("search", required: false)
+            
+            <div class="navbar-nav align-items-center ms-auto">
+                <div class="nav-item dropdown"></div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle"
+                       data-bs-toggle="dropdown">
+                        <img class="rounded-circle me-lg-2"
+                             src="~/Views/Shared/img/user3.jpg" alt="" style="width: 40px; height: 40px;">
+                        <span class="d-none d-lg-inline-flex">Phuong Thao</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        <a href="#" class="dropdown-item">My Profile</a> <a href="#"
+                                                                            class="dropdown-item">Settings</a> <a href="#"
+                                                                                                                  class="dropdown-item">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Library System by PhuongThao</p>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

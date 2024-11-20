@@ -1,0 +1,47 @@
+﻿@model library.transactionReturn
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h4>THÔNG TIN CHI TIẾT TRẢ SÁCH</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.idReturn)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.idReturn)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.overDueDate)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.overDueDate.HasValue ? Model.overDueDate.Value.ToString("dd/MM/yyyy") : "N/A")
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.overDueNumber)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.overDueNumber)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fineAmount)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fineAmount)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-muted">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idReturn }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>

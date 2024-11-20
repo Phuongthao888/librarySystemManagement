@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="librarySystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bookshelf">
+    <Key>
+      <PropertyRef Name="idBookshelf" />
+    </Key>
+    <Property Name="idBookshelf" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameBookshelfRow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="shelfPosition" Type="Int32" Nullable="false" />
+    <Property Name="capacityPerShelf" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="book" Relationship="librarySystemModel.FK__book__fk_idBooks__1920BF5C" FromRole="bookshelf" ToRole="book" />
+  </EntityType>
+  <EntityType Name="exportRepository">
+    <Key>
+      <PropertyRef Name="idExport" />
+    </Key>
+    <Property Name="idExport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_idStaff" Type="Int32" />
+    <Property Name="fk_idBook" Type="Int32" />
+    <Property Name="exportDate" Type="DateTime" Precision="3" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="staff" Relationship="Self.FK__exportRep__fk_id__21B6055D" FromRole="exportRepository" ToRole="staff" />
+    <NavigationProperty Name="book" Relationship="librarySystemModel.FK__exportRep__fk_id__22AA2996" FromRole="exportRepository" ToRole="book" />
+  </EntityType>
+  <EntityType Name="inventory">
+    <Key>
+      <PropertyRef Name="idInventory" />
+    </Key>
+    <Property Name="idInventory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_idBook" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="remainingQuantity" Type="Int32" />
+    <NavigationProperty Name="book" Relationship="librarySystemModel.FK__inventory__fk_id__1DE57479" FromRole="inventory" ToRole="book" />
+  </EntityType>
+  <EntityType Name="reader">
+    <Key>
+      <PropertyRef Name="idReader" />
+    </Key>
+    <Property Name="idReader" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="fullname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="dob" Type="DateTime" Precision="3" />
+    <Property Name="contactAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="userType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="transactionBorrow" Relationship="librarySystemModel.FK_transactionBorrow_reader" FromRole="reader" ToRole="transactionBorrow" />
+  </EntityType>
+  <EntityType Name="staff">
+    <Key>
+      <PropertyRef Name="idStaff" />
+    </Key>
+    <Property Name="idStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameStaff" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="pass" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="resetPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="exportRepository" Relationship="Self.FK__exportRep__fk_id__21B6055D" FromRole="staff" ToRole="exportRepository" />
+    <NavigationProperty Name="transactionBorrow" Relationship="librarySystemModel.FK_transactionBorrow_staff" FromRole="staff" ToRole="transactionBorrow" />
+    <NavigationProperty Name="importRepository" Relationship="librarySystemModel.FK__importRep__fk_id__5EBF139D" FromRole="staff" ToRole="importRepository" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__exportRep__fk_id__21B6055D">
+    <End Role="staff" Type="Self.staff" Multiplicity="0..1" />
+    <End Role="exportRepository" Type="Self.exportRepository" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="staff">
+        <PropertyRef Name="idStaff" />
+      </Principal>
+      <Dependent Role="exportRepository">
+        <PropertyRef Name="fk_idStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="librarySystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bookshelf" EntityType="Self.bookshelf" />
+    <EntitySet Name="exportRepository" EntityType="Self.exportRepository" />
+    <EntitySet Name="inventory" EntityType="Self.inventory" />
+    <EntitySet Name="reader" EntityType="Self.reader" />
+    <EntitySet Name="staff" EntityType="Self.staff" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK__exportRep__fk_id__21B6055D" Association="Self.FK__exportRep__fk_id__21B6055D">
+      <End Role="staff" EntitySet="staff" />
+      <End Role="exportRepository" EntitySet="exportRepository" />
+    </AssociationSet>
+    <EntitySet Name="category" EntityType="librarySystemModel.category" />
+    <EntitySet Name="supplier" EntityType="librarySystemModel.supplier" />
+    <EntitySet Name="transactionBorrow" EntityType="librarySystemModel.transactionBorrow" />
+    <AssociationSet Name="FK_transactionBorrow_reader" Association="librarySystemModel.FK_transactionBorrow_reader">
+      <End Role="reader" EntitySet="reader" />
+      <End Role="transactionBorrow" EntitySet="transactionBorrow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactionBorrow_staff" Association="librarySystemModel.FK_transactionBorrow_staff">
+      <End Role="staff" EntitySet="staff" />
+      <End Role="transactionBorrow" EntitySet="transactionBorrow" />
+    </AssociationSet>
+    <EntitySet Name="pay" EntityType="librarySystemModel.pay" />
+    <EntitySet Name="importRepository" EntityType="librarySystemModel.importRepository" />
+    <AssociationSet Name="FK__importRep__fk_id__5DCAEF64" Association="librarySystemModel.FK__importRep__fk_id__5DCAEF64">
+      <End Role="supplier" EntitySet="supplier" />
+      <End Role="importRepository" EntitySet="importRepository" />
+    </AssociationSet>
+    <AssociationSet Name="FK__importRep__fk_id__5EBF139D" Association="librarySystemModel.FK__importRep__fk_id__5EBF139D">
+      <End Role="staff" EntitySet="staff" />
+      <End Role="importRepository" EntitySet="importRepository" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pay_importRepository" Association="librarySystemModel.FK_pay_importRepository">
+      <End Role="importRepository" EntitySet="importRepository" />
+      <End Role="pay" EntitySet="pay" />
+    </AssociationSet>
+    <EntitySet Name="book" EntityType="librarySystemModel.book" />
+    <AssociationSet Name="FK__book__fk_idBooks__1920BF5C" Association="librarySystemModel.FK__book__fk_idBooks__1920BF5C">
+      <End Role="bookshelf" EntitySet="bookshelf" />
+      <End Role="book" EntitySet="book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__book__fk_idCateg__182C9B23" Association="librarySystemModel.FK__book__fk_idCateg__182C9B23">
+      <End Role="category" EntitySet="category" />
+      <End Role="book" EntitySet="book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__exportRep__fk_id__22AA2996" Association="librarySystemModel.FK__exportRep__fk_id__22AA2996">
+      <End Role="book" EntitySet="book" />
+      <End Role="exportRepository" EntitySet="exportRepository" />
+    </AssociationSet>
+    <AssociationSet Name="FK__importRep__fk_id__5FB337D6" Association="librarySystemModel.FK__importRep__fk_id__5FB337D6">
+      <End Role="book" EntitySet="book" />
+      <End Role="importRepository" EntitySet="importRepository" />
+    </AssociationSet>
+    <AssociationSet Name="FK__inventory__fk_id__1DE57479" Association="librarySystemModel.FK__inventory__fk_id__1DE57479">
+      <End Role="book" EntitySet="book" />
+      <End Role="inventory" EntitySet="inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactionBorrow_book" Association="librarySystemModel.FK_transactionBorrow_book">
+      <End Role="book" EntitySet="book" />
+      <End Role="transactionBorrow" EntitySet="transactionBorrow" />
+    </AssociationSet>
+    <EntitySet Name="transactionReturn" EntityType="librarySystemModel.transactionReturn" />
+    <AssociationSet Name="FK__transacti__fk_tr__534D60F1" Association="librarySystemModel.FK__transacti__fk_tr__534D60F1">
+      <End Role="transactionBorrow" EntitySet="transactionBorrow" />
+      <End Role="transactionReturn" EntitySet="transactionReturn" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="idCategory" />
+    </Key>
+    <Property Name="idCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ageLimit" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="book" Relationship="librarySystemModel.FK__book__fk_idCateg__182C9B23" FromRole="category" ToRole="book" />
+  </EntityType>
+  <EntityType Name="supplier">
+    <Key>
+      <PropertyRef Name="idSupplier" />
+    </Key>
+    <Property Name="idSupplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameSupplier" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="createdAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="importRepository" Relationship="librarySystemModel.FK__importRep__fk_id__5DCAEF64" FromRole="supplier" ToRole="importRepository" />
+  </EntityType>
+  <EntityType Name="transactionBorrow">
+    <Key>
+      <PropertyRef Name="transactionID" />
+    </Key>
+    <Property Name="transactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idBorrow" Type="Int32" />
+    <Property Name="fk_idReader" Type="Int32" />
+    <Property Name="fk_idStaff" Type="Int32" />
+    <Property Name="fk_idBook" Type="Int32" />
+    <Property Name="borrowDate" Type="DateTime" Precision="3" />
+    <Property Name="dueDate" Type="DateTime" Precision="3" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="reader" Relationship="librarySystemModel.FK_transactionBorrow_reader" FromRole="transactionBorrow" ToRole="reader" />
+    <NavigationProperty Name="staff" Relationship="librarySystemModel.FK_transactionBorrow_staff" FromRole="transactionBorrow" ToRole="staff" />
+    <NavigationProperty Name="book" Relationship="librarySystemModel.FK_transactionBorrow_book" FromRole="transactionBorrow" ToRole="book" />
+    <NavigationProperty Name="transactionReturn" Relationship="librarySystemModel.FK__transacti__fk_tr__534D60F1" FromRole="transactionBorrow" ToRole="transactionReturn" />
+  </EntityType>
+  <Association Name="FK_transactionBorrow_reader">
+    <End Type="librarySystemModel.reader" Role="reader" Multiplicity="0..1" />
+    <End Type="librarySystemModel.transactionBorrow" Role="transactionBorrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reader">
+        <PropertyRef Name="idReader" />
+      </Principal>
+      <Dependent Role="transactionBorrow">
+        <PropertyRef Name="fk_idReader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactionBorrow_staff">
+    <End Type="librarySystemModel.staff" Role="staff" Multiplicity="0..1" />
+    <End Type="librarySystemModel.transactionBorrow" Role="transactionBorrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="staff">
+        <PropertyRef Name="idStaff" />
+      </Principal>
+      <Dependent Role="transactionBorrow">
+        <PropertyRef Name="fk_idStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="pay">
+    <Key>
+      <PropertyRef Name="idPay" />
+    </Key>
+    <Property Name="idPay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_tranImID" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="importRepository" Relationship="librarySystemModel.FK_pay_importRepository" FromRole="pay" ToRole="importRepository" />
+  </EntityType>
+  <EntityType Name="importRepository">
+    <Key>
+      <PropertyRef Name="tranImID" />
+    </Key>
+    <Property Name="tranImID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idImport" Type="Int32" />
+    <Property Name="fk_idSupplier" Type="Int32" />
+    <Property Name="fk_idStaff" Type="Int32" />
+    <Property Name="fk_idBook" Type="Int32" />
+    <Property Name="importDate" Type="DateTime" Precision="0" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="0" />
+    <NavigationProperty Name="supplier" Relationship="librarySystemModel.FK__importRep__fk_id__5DCAEF64" FromRole="importRepository" ToRole="supplier" />
+    <NavigationProperty Name="staff" Relationship="librarySystemModel.FK__importRep__fk_id__5EBF139D" FromRole="importRepository" ToRole="staff" />
+    <NavigationProperty Name="pay" Relationship="librarySystemModel.FK_pay_importRepository" FromRole="importRepository" ToRole="pay" />
+    <NavigationProperty Name="book" Relationship="librarySystemModel.FK__importRep__fk_id__5FB337D6" FromRole="importRepository" ToRole="book" />
+  </EntityType>
+  <Association Name="FK__importRep__fk_id__5DCAEF64">
+    <End Type="librarySystemModel.supplier" Role="supplier" Multiplicity="0..1" />
+    <End Type="librarySystemModel.importRepository" Role="importRepository" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="idSupplier" />
+      </Principal>
+      <Dependent Role="importRepository">
+        <PropertyRef Name="fk_idSupplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__importRep__fk_id__5EBF139D">
+    <End Type="librarySystemModel.staff" Role="staff" Multiplicity="0..1" />
+    <End Type="librarySystemModel.importRepository" Role="importRepository" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="staff">
+        <PropertyRef Name="idStaff" />
+      </Principal>
+      <Dependent Role="importRepository">
+        <PropertyRef Name="fk_idStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pay_importRepository">
+    <End Type="librarySystemModel.importRepository" Role="importRepository" Multiplicity="0..1" />
+    <End Type="librarySystemModel.pay" Role="pay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="importRepository">
+        <PropertyRef Name="tranImID" />
+      </Principal>
+      <Dependent Role="pay">
+        <PropertyRef Name="fk_tranImID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="idBook" />
+    </Key>
+    <Property Name="idBook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_idCategory" Type="Int32" />
+    <Property Name="fk_idBookshelf" Type="Int32" />
+    <Property Name="titleBook" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="authorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="publisher" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="pubDate" Type="DateTime" Precision="3" />
+    <Property Name="reprintDate" Type="DateTime" Precision="3" />
+    <Property Name="numberOfPages" Type="Int32" />
+    <Property Name="bookLanguage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="quantityTotal" Type="Int32" />
+    <NavigationProperty Name="bookshelf" Relationship="librarySystemModel.FK__book__fk_idBooks__1920BF5C" FromRole="book" ToRole="bookshelf" />
+    <NavigationProperty Name="category" Relationship="librarySystemModel.FK__book__fk_idCateg__182C9B23" FromRole="book" ToRole="category" />
+    <NavigationProperty Name="exportRepository" Relationship="librarySystemModel.FK__exportRep__fk_id__22AA2996" FromRole="book" ToRole="exportRepository" />
+    <NavigationProperty Name="importRepository" Relationship="librarySystemModel.FK__importRep__fk_id__5FB337D6" FromRole="book" ToRole="importRepository" />
+    <NavigationProperty Name="inventory" Relationship="librarySystemModel.FK__inventory__fk_id__1DE57479" FromRole="book" ToRole="inventory" />
+    <NavigationProperty Name="transactionBorrow" Relationship="librarySystemModel.FK_transactionBorrow_book" FromRole="book" ToRole="transactionBorrow" />
+  </EntityType>
+  <Association Name="FK__book__fk_idBooks__1920BF5C">
+    <End Type="librarySystemModel.bookshelf" Role="bookshelf" Multiplicity="0..1" />
+    <End Type="librarySystemModel.book" Role="book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bookshelf">
+        <PropertyRef Name="idBookshelf" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="fk_idBookshelf" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__book__fk_idCateg__182C9B23">
+    <End Type="librarySystemModel.category" Role="category" Multiplicity="0..1" />
+    <End Type="librarySystemModel.book" Role="book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="idCategory" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="fk_idCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__exportRep__fk_id__22AA2996">
+    <End Type="librarySystemModel.book" Role="book" Multiplicity="0..1" />
+    <End Type="librarySystemModel.exportRepository" Role="exportRepository" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="idBook" />
+      </Principal>
+      <Dependent Role="exportRepository">
+        <PropertyRef Name="fk_idBook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__importRep__fk_id__5FB337D6">
+    <End Type="librarySystemModel.book" Role="book" Multiplicity="0..1" />
+    <End Type="librarySystemModel.importRepository" Role="importRepository" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="idBook" />
+      </Principal>
+      <Dependent Role="importRepository">
+        <PropertyRef Name="fk_idBook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__inventory__fk_id__1DE57479">
+    <End Type="librarySystemModel.book" Role="book" Multiplicity="0..1" />
+    <End Type="librarySystemModel.inventory" Role="inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="idBook" />
+      </Principal>
+      <Dependent Role="inventory">
+        <PropertyRef Name="fk_idBook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactionBorrow_book">
+    <End Type="librarySystemModel.book" Role="book" Multiplicity="0..1" />
+    <End Type="librarySystemModel.transactionBorrow" Role="transactionBorrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="idBook" />
+      </Principal>
+      <Dependent Role="transactionBorrow">
+        <PropertyRef Name="fk_idBook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="transactionReturn">
+    <Key>
+      <PropertyRef Name="idReturn" />
+    </Key>
+    <Property Name="idReturn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_transactionID" Type="Int32" />
+    <Property Name="overDueDate" Type="DateTime" Precision="3" />
+    <Property Name="overDueNumber" Type="Int32" />
+    <Property Name="fineAmount" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="transactionBorrow" Relationship="librarySystemModel.FK__transacti__fk_tr__534D60F1" FromRole="transactionReturn" ToRole="transactionBorrow" />
+  </EntityType>
+  <Association Name="FK__transacti__fk_tr__534D60F1">
+    <End Type="librarySystemModel.transactionBorrow" Role="transactionBorrow" Multiplicity="0..1" />
+    <End Type="librarySystemModel.transactionReturn" Role="transactionReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactionBorrow">
+        <PropertyRef Name="transactionID" />
+      </Principal>
+      <Dependent Role="transactionReturn">
+        <PropertyRef Name="fk_transactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

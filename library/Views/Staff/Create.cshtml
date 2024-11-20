@@ -1,0 +1,93 @@
+﻿@model library.staff
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Staff", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card mt-5">
+        <div class="card-header">
+            <h4 class="card-title">Create Staff</h4>
+        </div>
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <!--div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.idStaff, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.idStaff, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.idStaff, "", new { @class = "text-danger" })
+                    </div>
+                </!--div-->
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nameStaff, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.nameStaff, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nameStaff, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.pass, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.pass, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <!--div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.resetPassword, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.resetPassword, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.resetPassword, "", new { @class = "text-danger" })
+                    </div>
+                </!--div-->
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.role, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.role, new SelectList(new[]
+                        {
+                            new { Value = "Admin", Text = "Admin" },
+                            new { Value = "Thủ thư", Text = "Thủ thư" },
+                            new { Value = "Nhân viên kho", Text = "Nhân viên kho" }
+                        }, "Value", "Text"), "- Choose -", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary ml-2" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

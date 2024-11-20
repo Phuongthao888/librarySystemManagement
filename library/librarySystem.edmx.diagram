@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb875463b6a14fab8bb1a3d8f11b3b16" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="librarySystemModel.bookshelf" Width="1.5" PointX="2.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="librarySystemModel.exportRepository" Width="1.75" PointX="7" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="librarySystemModel.inventory" Width="1.5" PointX="0.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="librarySystemModel.reader" Width="1.5" PointX="2.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="librarySystemModel.staff" Width="1.625" PointX="9.375" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="librarySystemModel.sysdiagrams" Width="1.5" PointX="17" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="librarySystemModel.FK__exportRep__fk_id__21B6055D" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="librarySystemModel.category" Width="1.5" PointX="0.5" PointY="5.125" />
+        <EntityTypeShape EntityType="librarySystemModel.supplier" Width="1.625" PointX="9.375" PointY="1.875" />
+        <EntityTypeShape EntityType="librarySystemModel.transactionBorrow" Width="1.625" PointX="4.75" PointY="0.5" />
+        <AssociationConnector Association="librarySystemModel.FK_transactionBorrow_reader" />
+        <AssociationConnector Association="librarySystemModel.FK_transactionBorrow_staff" />
+        <EntityTypeShape EntityType="librarySystemModel.pay" Width="1.5" PointX="12.125" PointY="2.25" />
+        <EntityTypeShape EntityType="librarySystemModel.importRepository" Width="1.875" PointX="12.125" PointY="5.125" />
+        <AssociationConnector Association="librarySystemModel.FK__importRep__fk_id__5DCAEF64" />
+        <AssociationConnector Association="librarySystemModel.FK__importRep__fk_id__5EBF139D" />
+        <AssociationConnector Association="librarySystemModel.FK_pay_importRepository" />
+        <EntityTypeShape EntityType="librarySystemModel.book" Width="1.5" PointX="4.75" PointY="5.125" />
+        <AssociationConnector Association="librarySystemModel.FK__book__fk_idBooks__1920BF5C" />
+        <AssociationConnector Association="librarySystemModel.FK__book__fk_idCateg__182C9B23" />
+        <AssociationConnector Association="librarySystemModel.FK__exportRep__fk_id__22AA2996" />
+        <AssociationConnector Association="librarySystemModel.FK__importRep__fk_id__5FB337D6" />
+        <AssociationConnector Association="librarySystemModel.FK__inventory__fk_id__1DE57479" />
+        <AssociationConnector Association="librarySystemModel.FK_transactionBorrow_book" />
+        <EntityTypeShape EntityType="librarySystemModel.transactionReturn" Width="1.5" PointX="7.125" PointY="1.25" />
+        <AssociationConnector Association="librarySystemModel.FK__transacti__fk_tr__534D60F1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hp\\source\\repos\\library\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{173D1A1D-4D7D-43EB-90F8-3589D62331EB}|library\\library.csproj|c:\\users\\hp\\source\\repos\\library\\library\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D1A1D-4D7D-43EB-90F8-3589D62331EB}|library\\library.csproj|solutionrelative:library\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D1A1D-4D7D-43EB-90F8-3589D62331EB}|library\\library.csproj|C:\\Users\\hp\\source\\repos\\library\\library\\views\\book\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173D1A1D-4D7D-43EB-90F8-3589D62331EB}|library\\library.csproj|solutionrelative:library\\views\\book\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173D1A1D-4D7D-43EB-90F8-3589D62331EB}|library\\library.csproj|C:\\Users\\hp\\source\\repos\\library\\library\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{173D1A1D-4D7D-43EB-90F8-3589D62331EB}|library\\library.csproj|solutionrelative:library\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 252,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\library\\library\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "library\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\library\\library\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "library\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAwI0AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-29T09:46:17.86Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\library\\library\\Views\\Book\\Create.cshtml",
+              "RelativeDocumentMoniker": "library\\Views\\Book\\Create.cshtml",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\library\\library\\Views\\Book\\Create.cshtml",
+              "RelativeToolTip": "library\\Views\\Book\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwBEAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-04T16:20:54.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\library\\library\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "library\\Controllers\\BookController.cs",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\library\\library\\Controllers\\BookController.cs",
+              "RelativeToolTip": "library\\Controllers\\BookController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAQwEsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:19:03.626Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

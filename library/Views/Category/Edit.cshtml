@@ -1,0 +1,69 @@
+﻿@model library.category
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Category", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card mt-5">
+        <div class="card-header text-center">
+            <h4 class="card-title">CẬP NHẬT THÔNG TIN DANH MỤC</h4>
+        </div>
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.idCategory, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.idCategory, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nameCategory, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.nameCategory, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nameCategory, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ageLimit, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.ageLimit,
+                            new SelectList(new[]
+                            {
+                                new { Value = "Dưới 3 tuổi", Text = "Dưới 3 tuổi" },
+                                new { Value = "Trên 3 tuổi", Text = "Trên 3 tuổi" },
+                                new { Value = "Trên 18 tuổi", Text = "Trên 18 tuổi" },
+                                new { Value = "Mọi lứa tuổi", Text = "Mọi lứa tuổi" }
+                            }, "Value", "Text"),
+                            "- Chọn độ tuổi -",
+                            new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ageLimit, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary ml-2" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

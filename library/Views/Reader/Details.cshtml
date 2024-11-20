@@ -1,0 +1,89 @@
+﻿@model library.reader
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h4>THÔNG TIN CHI TIẾT ĐỘC GIẢ</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.idReader)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.idReader)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.firstName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.firstName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.lastName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.lastName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fullname)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fullname)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.dob)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.dob.HasValue ? Model.dob.Value.ToString("dd/MM/yyyy") : "N/A")
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.contactAddress)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.contactAddress)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.gender)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.gender)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.phoneNumber)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.phoneNumber)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.userType)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.userType)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-muted">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idReader }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>

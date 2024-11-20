@@ -1,0 +1,91 @@
+﻿@model IEnumerable<library.supplier>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section search {
+    <div style="width: 500px;">
+        @using (Html.BeginForm())
+        {
+            <div style="display: inline-flex; align-items: center;">
+                @Html.TextBox("Search", "", new { @id = "Search", @style = "padding: 5px; width: 200px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; border-right: none;" })
+                <input type="submit" name="submit" value="Tìm" style="padding: 5px 10px; background-color: #007bff; color: white; border: 1px solid #007bff; border-radius: 0 4px 4px 0; cursor: pointer;" />
+            </div>
+        }
+    </div>
+}
+<h2 class="mt-4 text-center">QUẢN LÝ NHÀ CUNG CẤP</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Supplier")" class="btn btn-success">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th></th> <!-- Edit button column -->
+                <th></th> <!-- Details button column -->
+                <th></th> <!-- Delete button column -->
+                <th>
+                    @Html.DisplayNameFor(model => model.First().idSupplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().nameSupplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().createdAt)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.idSupplier }, new { @class = "btn btn-warning btn-sm" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.idSupplier }, new { @class = "btn btn-info btn-sm" })
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("DeleteConfirmed", "Supplier", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.idSupplier" />
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idSupplier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nameSupplier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone)
+                    </td>
+                    <td>
+                        @(Model.First().createdAt.HasValue ? Model.First().createdAt.Value.ToString("dd/MM/yyyy") : "N/A")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

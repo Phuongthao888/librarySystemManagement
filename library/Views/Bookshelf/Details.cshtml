@@ -1,0 +1,47 @@
+﻿@model library.bookshelf
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h4>THÔNG TIN CHI TIẾT KỆ SÁCH</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.idBookshelf)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.idBookshelf)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.nameBookshelfRow)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.nameBookshelfRow)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.shelfPosition)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.shelfPosition)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.capacityPerShelf)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.capacityPerShelf)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-muted">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idBookshelf }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>

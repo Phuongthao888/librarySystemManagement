@@ -1,0 +1,108 @@
+﻿@model library.book
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h4>THÔNG TIN CHI TIẾT SÁCH</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.idBook)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.idBook)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fk_idCategory)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fk_idCategory)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fk_idBookshelf)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fk_idBookshelf)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.titleBook)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.titleBook)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.authorName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.authorName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.publisher)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.publisher)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.pubDate)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.pubDate.HasValue ? Model.pubDate.Value.ToString("dd/MM/yyyy") : "N/A")
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.reprintDate)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.reprintDate.HasValue ? Model.reprintDate.Value.ToString("dd/MM/yyyy") : "N/A")
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.numberOfPages)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.numberOfPages)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.bookLanguage)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.bookLanguage)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.price)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.price)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.quantity)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.quantity)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.quantityTotal)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.quantityTotal)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-muted">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idBook }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>

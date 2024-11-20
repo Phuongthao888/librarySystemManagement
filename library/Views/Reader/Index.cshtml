@@ -1,0 +1,119 @@
+﻿@model IEnumerable<library.reader>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section search {
+    <div style="width: 500px;">
+        @using (Html.BeginForm())
+        {
+            <div style="display: inline-flex; align-items: center;">
+                @Html.TextBox("Search", "", new { @id = "Search", @style = "padding: 5px; width: 200px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; border-right: none;" })
+                <input type="submit" name="submit" value="Tìm" style="padding: 5px 10px; background-color: #007bff; color: white; border: 1px solid #007bff; border-radius: 0 4px 4px 0; cursor: pointer;" />
+            </div>
+        }
+    </div>
+}
+<h2 class="mt-4 text-center">QUẢN LÝ ĐỘC GIẢ</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Reader")" class="btn btn-success">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th></th> <!-- Edit button column -->
+                <th></th> <!-- Details button column -->
+                <th></th> <!-- Delete button column -->
+                <th></th> <!-- Print button column -->
+                <th>
+                    @Html.DisplayNameFor(model => model.First().idReader)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().firstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().lastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().fullname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().dob)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().contactAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().phoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().userType)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("PrintReader", "reader", new { id = item.idReader })" class="btn btn-secondary btn-sm">Print</a>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.idReader }, new { @class = "btn btn-warning btn-sm" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.idReader }, new { @class = "btn btn-info btn-sm" })
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("DeleteConfirmed", "Reader", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.idReader" />
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idReader)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.firstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fullname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dob)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contactAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userType)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

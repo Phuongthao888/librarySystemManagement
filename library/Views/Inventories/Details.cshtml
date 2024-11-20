@@ -1,0 +1,47 @@
+﻿@model library.inventory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h4>THÔNG TIN CHI TIẾT HÀNG TỒN</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.idInventory)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.idInventory)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fk_idBook)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fk_idBook)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.quantity)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.quantity)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.remainingQuantity)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.remainingQuantity)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-muted">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idInventory }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>

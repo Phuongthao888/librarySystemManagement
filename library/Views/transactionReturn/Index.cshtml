@@ -1,0 +1,124 @@
+﻿@model IEnumerable<library.transactionReturn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section search {
+    <div style="width: 500px;">
+        @using (Html.BeginForm())
+        {
+            <div style="display: inline-flex; align-items: center;">
+                @Html.TextBox("Search", "", new { @id = "Search", @style = "padding: 5px; width: 200px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; border-right: none;" })
+                <input type="submit" name="submit" value="Tìm" style="padding: 5px 10px; background-color: #007bff; color: white; border: 1px solid #007bff; border-radius: 0 4px 4px 0; cursor: pointer;" />
+            </div>
+        }
+    </div>
+}
+
+<h2>Transaction Return Records</h2>
+
+
+<div class="card-container">
+    @{
+        var groupedReturns = Model.GroupBy(t => t.idReturn);
+    }
+
+    @foreach (var group in groupedReturns)
+    {
+        <div class="card">
+            <div class="card-header">
+                <h4>Return ID: @group.Key</h4>
+                <p><i class="fa fa-calendar"></i> Overdue Date: @(group.First().overDueDate.HasValue ? group.First().overDueDate.Value.ToString("dd/MM/yyyy") : "n/a")</p>
+                <p><i class="icon-reader"></i> Overdue Number: @group.First().overDueNumber</p>
+            </div>
+            <div class="card-body">
+                <ul>
+                    @foreach (var item in group)
+                    {
+                        <li>
+                            <strong>Fine Amount:</strong> @item.fineAmount<br />
+                            <strong>Overdue Days:</strong> @item.overDueNumber<br />
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="card-footer">
+                <!-- Print Button -->
+                <a href="@Url.Action("PrintTransactionReturn", "transactionReturn", new { id = group.Key })" class="btn btn-secondary btn-sm">Print</a>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-around;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #e1e4e8;
+        padding: 1.5rem;
+        width: 500px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-header {
+        font-weight: bold;
+        background-color: #f0f4f8;
+        padding: 1rem;
+        border-bottom: 2px solid #ddd;
+        border-radius: 8px 8px 0 0;
+        color: #333;
+    }
+
+    .card-body {
+        padding: 1rem;
+        background-color: #fafafa;
+        border-radius: 0 0 8px 8px;
+    }
+
+        .card-body ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-body li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ececec;
+        }
+
+    .card-footer {
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+        .card-footer .btn {
+            margin: 0 0.2rem;
+            padding: 0.3rem 1rem;
+            font-size: 0.85rem;
+        }
+
+    /* Optional icon styling */
+    .icon-reader::before {
+        content: "📘";
+        margin-right: 0.3rem;
+    }
+
+    .icon-staff::before {
+        content: "👤";
+        margin-right: 0.3rem;
+    }
+</style>

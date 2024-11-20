@@ -1,0 +1,61 @@
+﻿@model library.supplier
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h4>THÔNG TIN CHI TIẾT NHÀ CUNG CẤP</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.idSupplier)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.idSupplier)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.nameSupplier)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.nameSupplier)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.address)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.address)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.phone)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.phone)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.createdAt)
+            </dt>
+            <dd class="col-sm-9">
+                @(Model.createdAt.HasValue ? Model.createdAt.Value.ToString("dd/MM/yyyy") : "N/A")
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-muted">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idSupplier }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>

@@ -1,0 +1,105 @@
+﻿@model library.staff
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+    <style>
+        body {
+            background-image: url('https://source.unsplash.com/1600x900/?library,books');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-top: 100px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .social-login {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            .social-login a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 class="login-header">Welcome Back</h2>
+
+        @using (Html.BeginForm("Login", "Staff", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.Label("userName", "User Name", new { @class = "control-label" })
+                @Html.TextBox("userName", null, new { @class = "form-control", placeholder = "Enter your username" })
+            </div>
+            <div class="form-group">
+                @Html.Label("pass", "Password", new { @class = "control-label" })
+                @Html.TextBox("pass", null, new { @class = "form-control", placeholder = "Enter your password", type = "password" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary btn-block" />
+            </div>
+
+            if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">@Html.ValidationSummary(true)</div>
+            }
+        }
+
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿@model library.staff
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h4>THÔNG TIN CHI TIẾT NHÂN VIÊN</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.idStaff)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.idStaff)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.nameStaff)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.nameStaff)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.userName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.userName)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.pass)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.pass)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.HiddenFor(model => model.resetPassword)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.HiddenFor(model => model.resetPassword)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.role)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.role)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer text-muted">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idStaff }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary btn-sm" })
+    </div>
+</div>
