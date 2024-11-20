@@ -1,3 +1,1 @@
-login:
-  user: admin
-  password: admin1
+login (user: admin, password: admin1)
